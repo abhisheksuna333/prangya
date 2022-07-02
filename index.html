@@ -1,1485 +1,249 @@
+
 <head>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
- 
-
- <style>
-
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800&display=swap');
-
-@import url('https://fonts.googleapis.com/css?family=Concert+One&display=swap');
-
- body{
-
- margin:0px;
-
- background-image: url();
-
- background-attachment: fixed;
-
- font-family: 'Montserrat', sans-serif;
-
- display: block;
-
- }
-
- #qna{
-
- text-align: left;
-
- box-sizing: border-box;
-
- }
-
- .custom-box{
-
- max-width: 800px;
-
- background-image: url();
-
- margin:30px auto;
-
- padding: 50px 40px;
-
- border-radius: 10px;
-
- }
-
- .quiz-home-box{
-
- text-align:center;
-
- display: none;
-
- }
-
- .quiz-home-box.show{
-
- display: block;
-
- animation: fadeInRight 1s ease;
-
- }
-
- .quiz-home-box h4{
-
- font-size: 30px;
-
- font-weight: 500;
-
- color:#000;
-
- margin: 0 0 30px;
-
- }
-
- .btn{
-
- box-shadow: 0px 1px 0px 0px #fff6af;
-
-	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-
-	background-color:#ffec64;
-
-	border-radius:6px;
-
-	border:1px solid #ffaa22;
-
-	display:inline-block;
-
-	cursor:pointer;
-
-	color:#333333;
-
-	font-family:Arial;
-
-	font-size:12px;
-
-	font-weight:bold;
-
-	padding:6px 24px;
-
-	text-decoration:none;
-
-	text-shadow:0px 1px 0px #ffee66;
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  color: #000000;
 }
 
- .btn:focus{
-
- outline:none;
-
- }
-
- .quiz-box{
-
- background-image: url();
-
- background-color: #ebd8b7;
-
- display: none;
-
- }
-
- .quiz-box.show{
-
- display: block;
-
- animation: fadeInRight 1s ease;
-
- }
-
- .quiz-box .stats{
-
- display: flex;
-
- flex-wrap: wrap;
-
- justify-content: space-between;
-
- font-size: 30px;
-
- text-transform: none;
-
- color: #1d1b19;
-
- }
-
- .quiz-box .stats .quiz-time{
-
- flex-basis: calc(50% - 20px);
-
- max-width: calc(50% - 20px);
-
- /*background: red;*/ 
-
- text-align: left;
-
- }
-
- .quiz-box .stats .time-up-text{
-
- /* display: inline-block;*/
-
- color:#d23723;
-
- font-weight: 500;
-
- display: none;
-
- }
-
- .quiz-box .stats .time-up-text.show{
-
- display:inline-block;
-
- animation: fadeInOut 1s linear infinite; 
-
- }
-
- @keyframes fadeInOut{
-
- 0%{
-
- opacity: 0;
-
- }
-
- 50%{
-
- opacity: 1;
-
- }
-
- 100%{
-
- opacity: 0;
-
- }
-
- }
-
- .quiz-box .stats .quiz-time .remaining-time{
-
- height: 60px;
-
- width: 60px;
-
- color:#059e4c;
-
- border: 2px solid #059e4c;
-
- background-color: #fff;
-
- font-weight: 800;
-
- line-height: 56px;
-
- text-align: center;
-
- border-radius: 50%;
-
- display:inline-block;
-
- }
-
- .quiz-box .stats .quiz-time .remaining-time.less-time{
-
- color:#d23723;
-
- border-color:#d23723;
-
- }
-
- .quiz-box .stats .score-board{
-
- flex-basis: calc(50% - 20px);
-
- max-width: calc(50% - 20px);
-
- /*background: blue;*/
-
- text-align: right;
-
- 
-
- }
-
- .quiz-box .stats .score-board .correct-answer{
-
- font-weight: 800;
-
- }
-
- .quiz-box .question-box{
-
- background-color: #ffffff;
-
- padding: 40px 30px;
-
- margin-top: 40px;
-
- border-radius: 10px;
-
- font-size: 28px;
-
- border: 2px solid #000000;
-
- text-align: center;
-
- position: relative;
-
- }
-
- .quiz-box .question-box .current-question-num{
-
- height: 50px;
-
- width: 80px;
-
- background-color: #fff;
-
- border:2px solid #000;
-
- font-size: 20px;
-
- font-weight: 800;
-
- color:#000;
-
- border-radius: 9%;
-
- line-height: 50px;
-
- text-align: center;
-
- position: absolute;
-
- top:-95px;
-
- left:50%;
-
- margin-left: -35px;
-
- z-index:1;
-
- }
-
- .quiz-box .question-box .question-text{
-
- font-size: 22px;
-
- font-family: 'Concert One', cursiv;
-
- color:#000000;
-
- }
-
- .quiz-box .option-box{
-
- display: flex;
-
- flex-wrap: wrap;
-
- justify-content: space-between;
-
- 
-
- }
-
- .quiz-box .option-box .option{
-
- background-color: #ffffff;
-
- flex-basis: calc(50% - 20px);
-
- max-width: calc(50% - 20px);
-
- margin-top: 30px;
-
- padding: 7px 7px;
-
- text-align: center;
-
- font-size: 20px;
-
- text-transform: none;
-
- font-weight: 500;
-
- color:#000000;
-
- border:2px solid #000000;
-
- border-radius: 9px;
-
- cursor: pointer;
-
- position: relative;
-
- animation: zoomIn .3s linear forwards;
-
- opacity: 0;
-
- }
-
- @keyframes zoomIn{
-
- 0%{
-
- transform: scale(0.8);
-
- }
-
- 100%{
-
- transform: scale(1);
-
- opacity:1;
-
- }
-
- }
-
- .quiz-box .option-box .option.already-answered{
-
- pointer-events: none;
-
- }
-
- .quiz-box .option-box .option.show-correct{
-
- background-color: #11c466;
-
- border-color:#059e4c;
-
- color: #ffffff;
-
- transition: all .3s ease;
-
- }
-
- .quiz-box .option-box .option.correct{
-
- background-color: #11c466;
-
- border-color:#059e4c;
-
- color:#ffffff;
-
- opacity:1;
-
- animation: pulse 1s linear;
-
- }
-
- @keyframes pulse{
-
- 0%{
-
- transform: scale(1);
-
- }
-
- 50%{
-
- transform: scale(1.1);
-
- }
-
- 100%{
-
- transform: scale(1);
-
- }
-
- }
-
- .quiz-box .option-box .option.correct::before{
-
- content: '';
-
- position: absolute;
-
- height: 30px;
-
- width: 30px;
-
- right: 15px;
-
- top:7px;
-
- background-image: url("");
-
- background-size: 20px;
-
- background-position: center;
-
- background-repeat: no-repeat;
-
- animation: fadeInRight .5s ease;
-
- }
-
- .quiz-box .option-box .option.wrong{
-
- background-color: #f85943;
-
- border-color:#d23723;
-
- color: #ffffff;
-
- opacity:1;
-
- animation: shake 1s linear;
-
- } @keyframes shake{
-
- 0%,30%,50%{
-
- transform: translateX(10px);
-
- }
-
- 20%,40%{
-
- transform: translateX(-10px);
-
- }
-
- 60%{
-
- transform: translateX(-7px);
-
- }
-
- 70%{
-
- transform: translateX(7px);
-
- }
-
- 80%{
-
- transform: translateX(-4px);
-
- }
-
- 90%{
-
- transform: translateX(4px);
-
- }
-
- 100%{
-
- transform: translateX(0px);
-
- }
-
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  width: 10px
+  border-color: #ffcc00;
+  border-style: solid;
+  padding: 13px;
 }
 
- .quiz-box .option-box .option.wrong::before{
-
- content: '';
-
- position: absolute;
-
- height: 30px;
-
- width: 30px;
-
- right: 15px;
-
- top:7px;
-
- background-image: url("");
-
- background-size: 20px;
-
- background-position: center;
-
- background-repeat: no-repeat;
-
- animation: fadeInRight .5s ease;
-
- }
-
- @keyframes fadeInRight{
-
- 0%{
-
- opacity:0;
-
- transform: translateX(40px);
-
- }
-
- 100%{
-
- opacity: 1;
-
- transform: translateX(0px);
-
- }
-
- }
-
- 
-
- .quiz-box .answer-description{
-
- /*background-color: #ffffff;
-
- border:2px solid #c2af91;
-
- */
-
- margin-top: 20px;
-
- padding: 15px;
-
- border-radius:10px;
-
- color: #555555;
-
- display: none;
-
- 
-
- }
-
- .quiz-box .answer-description.show{
-
- display: block;
-
- animation: fadeInRight 1s ease;
-
- }
-
- .quiz-box .next-question{
-
- margin-top: 20px;
-
- text-align: center;
-
- }
-
- .see-result-btn,.next-question-btn{
-
- display: none;
-
- }
-
- .see-result-btn.show,
-
- .next-question-btn.show{
-
- display: inline-block;
-
- animation: fadeInRight 1s ease;
-
- }
-
- .quiz-over-box{
-
- text-align: center;
-
- display: none;
-
- }
-
- .quiz-over-box.show{
-
- display: block;
-
- animation: fadeInRight 1s ease;
-
- }
-
- .quiz-over-box h1{
-
- font-size:50px;
-
- font-family: 'Concert One', cursive;
-
- color: #f70b0b;
-
- margin:0px 3 20px; 
-
- }
-
- .quiz-over-box h4{
-
- font-size:25px;
-
- font-weight: normal;
-
- color: #0910f7;
-
- margin: 15px 0 20px;
-
- }
-
- .quiz-over-box h4 span{
-
- font-weight: 800;
-
- color:#000;
-
- }
-
- .start-again-quiz-btn,
-
- .go-home-btn{
-
- margin-top: 15px;
-
- 
-
- }
-
- 
-
- #qna{
-
-    padding-top: 10px;
-
+table.GeneratedTable thead {
+  background-color: #ffcc00;
 }
-
-#qna li{
-
-    padding-top: 20px;
-
-    list-style: decimal;
-
-}
-
- .footsec{
-
-     width: 100%;
-
-    margin-top: 20PX;
-
-}
-
-.footsec button{
-
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-    width: 46%;
-
-    padding:5px;
-
-    font-size: 18px;
-
-    border-radius: 10px;
-
-}
-
- .share{
-
-     background-color:green;
-
-     float: left;
-
-     color: white;
-
- }
-
- .print{
-
-    float:right ;
-
- }
-
- .footsec i{
-
-     padding-right: 20px;
-
-     
-
- }
-
- 
-
- /*responsive*/
-
- @media (max-width: 767px){
-
- .custom-box{
-
- background-color: #fff;
-
- }
-
- .quiz-home-box h4{
-
- font-size: 20px;
-
- }
-
- .btn{
-
- padding: 10px 20px;
-
- font-size: 15px;
-
- }
-
- .quiz-box .question-box{
-
- padding: 40px 0px;
-
- }
-
- .quiz-box .question-box .question-text{
-
- font-size: 17px;
-
- font-family: sans-serif;
-
- color: #1d1b19;
-
- }
-
- .custom-box{
-
- padding: 30px 10px 50px 10px;
-
- background-color: #fff;
-
- }
-
- .quiz-box .stat{
-
- font-size:20px;
-
- }
-
- .quiz-box .stats .quiz-time {
-
- flex-basis: calc(60% - 10px);
-
- max-width: calc(60% - 10px);
-
- font-size: 18px;
-
- }
-
- .quiz-box .stats .score-board{
-
- flex-basis: calc(40% - 10px);
-
- max-width: calc(40% - 10px);
-
- font-size: 16px;
-
- }
-
- .quiz-box .stats .quiz-time .remaining-time{
-
- height: 50px;
-
- width: 50px;
-
- line-height: 46px;
-
- color: #045e2e;
-
- border: 2px solid #045e2e;
-
- }
-
- .quiz-box .question-box .current-question-num{
-
- height: 28px;
-
- width: 80px;
-
- line-height: 30px;
-
- top: -31px;
-
- margin-left: -30px;
-
- font-size: 16px;
-
- }
-
- .quiz-box .option-box .option{
-
- flex-basis: 100%;
-
- max-width: 100%;
-
- font-size: 16px;
-
- margin-top: 15px;
-
- }
-
- .quiz-over-box h1{
-
- font-size: 30px;
-
- 
-
- 
-
- }
-
- .quiz-over-box h4{
-
- font-size: 20px;
-
- margin: 10px 0 15px;
-
- 
-
- }
-
- 
-
- }
-
- </style>
-
-</head>
-
-<body>  
-
+</style>
+
+<!-- HTML Code: Place this code in the document's body (between the 'body' tags) where the table should appear -->
+<table class="GeneratedTable">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Topic</th>
+    </tr>
+  </thead>
   
-
-    <div class="quizsection">
-
-    <div class="quiz-home-box custom-box show">
-
-    <h4 id="timelimit"><h4><font color="red"><b>MCQ on SN1 & SN2 reaction</b></font></h4><font color="green"> It includes <br> ( 25 Question ) <br> <a href="#" target="_blank"> Question source</a></font></h5><br><br>
-
-    <button type="button" class="start-quiz-btn btn">CLICK HERE TO START THE TEST<br>
-
-( unlimited attempts )</button><br><br>
-
-
-    </div>
-
-    <div class="quiz-box custom-box">
-
-    <div class="stats">
-
-    <div class="quiz-time">
-
-    <div class="remaining-time"></div>
-
-        <span class="time-up-text">Time's Up</span>
-
-    </div>
-
-    <div class="score-board">
-
-    <span class="score-text">score:</span>
-
-    <span class="correct-answer"></span>
-
-    </div>
-
-    </div>
-
-    <div class="question-box">
-
-    <div class="current-question-num">
-
-    </div>
-
-    <div class="question-text">
-
-        
-
-    </div>
-
-    </div>
-
-    <div class="option-box">
-
-    </div>
-
-    <div class="answer-description">
-
-        
-
-    </div>
-
-    <div class="next-question">
-
-    <button type="button" class="next-question-btn btn">Next question</button>
-
-    <button type="button" class="see-result-btn btn">See Your Result</button>
-
-    </div>
-
-    <a style="padding:0px !important; margin:opx !important; text-decoration: none !important; color:white !important; opacity: 0 !important; cursor:default !important;font-size: 1px !important;" href="https://www.pharmatricks.in/"></a>
-
-    </div>
-
- 
-
-    <div class="quiz-over-box custom-box">
-
-    <h1>Result</h1>
-
-    <h4>Total Questions: <span class="total-questions"></span></h4>
-
-    <h4>Attempt: <span class="total-attempt"></span></h4>
-
-    <h4>Correct: <span class="total-correct"></span></h4>
-
-    <h4>Wrong: <span class="total-wrong"></span></h4>
-
-    <h4>Percentage: <span class="percentage"></span></h4>
-
-    
-
-    <hr>
-
-    <button type="button" class="start-again-quiz-btn btn">Start Again</button>
-
-    <button type="button" class="go-home-btn btn">Go To Home</button>
-
-    <!-- answer sheet -->
-
-    <div id="printsection">
-
-    <h1>Answer Summary</h1>
-
-    <div id="qna"></div>
-
-    </div>
-
-    </div>
-
-    </div>
-
-   
-
-   
-
-    
-
-<script>
-
- 
-
-    
-
-const questionText=document.querySelector(".question-text");
-
-const optionBox=document.querySelector(".option-box");
-
-const currentQuestionNum=document.querySelector(".current-question-num");
-
-const answerDescription=document.querySelector(".answer-description");
-
-const nextQuestionBtn=document.querySelector(".next-question-btn");
-
-const correctAnswers=document.querySelector(".correct-answer");
-
-const seeResultBtn=document.querySelector(".see-result-btn");
-
-const remainingTime=document.querySelector(".remaining-time");
-
-const timeUpText=document.querySelector(".time-up-text");
-
-const quizHomeBox=document.querySelector(".quiz-home-box");
-
-const quizBox=document.querySelector(".quiz-box");
-
-const quizOverBox=document.querySelector(".quiz-over-box");
-
-const startAgainQuizBtn=document.querySelector(".start-again-quiz-btn");
-
-const goHomeBtn=document.querySelector(".go-home-btn");
-
-const startQuizBtn=document.querySelector(".start-quiz-btn");
-
-let attempt=0;
-
-let questionIndex=0;
-
-let score=0;
-
-let number=0;
-
-let myArray=[];
-
-let interval;
-
-</script>      <script>var time=600;myApp=[
-
-{     question:'The correct term for SN1 reaction is ?',     options:['Unimolecular electrophilic substitution ','Unimolecular nucleophilic substitution ','Bimolecular nucleophilic substitution ','Unimolecular electrophilic substitution '],     answer:1 },{     question:'The correct term for SN2 reaction is ?',     options:['Unimolecular nucleophilic substitution','Bimolecular electrophilic substitution','Bimolecular nucleophilic substitution','Trimolecular nucleophilic substitution'],     answer:2 },{     question:'Which of the following is a single step reaction ?',     options:['SN1','SN2','SN0','SN3'],     answer:1 },{     question:'The order or molecularity for SN1 reaction is ?',     options:['0','1','2','3'],     answer:1 },{     question:'The order or molecularity for SN2 reaction is ?',     options:['0','1','2','3'],     answer:2 },{     question:'The correct term for SN1 reaction regarding nucleophile is ?',     options:['Nucleophile is weak','Nucleophile is strong','Nucleophile is very strong','All of the above'],     answer:0 },{     question:'The correct term for Nucleophile for SN2 reaction is ?',     options:['Nucleophile is weak','Nucleophile is strong','Nucleophile is very strong','All of the above'],     answer:1 },{     question:'The rate of reaction for SN1 depends upon ?',     options:['Stability of carboanion','Stability of carbocation','Steric hindrance','Order of reaction'],     answer:1 },{     question:'The rate of reaction for SN2 is dependent upon ?',     options:['Carbocation formation ','Carboanion formation ','Steric hindrance','All of the above'],     answer:2 },{     question:'Which type of solvent shows SN1 reaction ?',     options:['Polar solvents','Polar protic solvent','Polar aprotic solvent','None'],     answer:1 },{     question:'Which of the solvent can participate in SN2 reaction',     options:['Polar protic solvent','Polar Aprotic solvent','only polar solvents','Only non-polar solvents'],     answer:1 },{     question:'Racemic mixture is formed for optically active substrate in which type of reaction ?',     options:['SN1','SN2','E1','E2'],     answer:0 },{     question:'Which optical active form is produced at the end of SN2 reaction',     options:['Racemic form','Retention form','Walden inversion form','All of the above'],     answer:2 },{     question:'The correct order for rate of reaction with respect to haloalkanes for SN1 reaction is ? [C represent carbon]',     options:['3°C > 2°C > 1°C > CH<sub>3</sub>-X','1°C > 2°C > 3°C > CH<sub>3</sub>-X','CH<sub>3</sub>-X> 3°C > 2°C > 1°C','CH<sub>3</sub>-X> 1°C > 2°C > 3°C'],     answer:0 },{     question:'The correct order for rate of reaction with respect to haloalkanes for SN2 reaction is ? [C represent carbon]',     options:['3°C > 2°C > 1°C > CH<sub>3</sub>-X','CH<sub>3</sub>-X> 3°C > 2°C > 1°C','CH<sub>3</sub>-X > 3°C > 2°C > 1°C','CH<sub>3</sub>-X > 1°C > 2°C > 3°C'],     answer:3 },{     question:'Which of the following is NOT an example of Polar protic solvent ?',     options:['H20','CH3COOH','Acetone','Ethanol'],     answer:2 },{     question:'SN1 and SN2 reaction takes place for ____________',     options:['Ketones','Aldehydes','Alkanes','Haloalkanes'],     answer:3 },{     question:'Formation of does NOT carbocation takes place in which reaction ?',     options:['SN1','SN2','SN3','SN4'],     answer:1 },{     question:'Which of the following is TRUE for SN1 reaction?',     options:['Rate of Reaction is directly proportional to stability of carbocation','Rate of reaction is inversely proportional to stability of carbocation','Rate of Reaction is directly proportional to steric hindrance','Rate of Reaction is inversely proportional to steric hindrance'],     answer:0 },{     question:'Which of the following is TRUE for SN2 reaction ?',     options:['Rate of reaction is directly proportional for Stability of carbocation','Rate of reaction is inversely proportional to stability of carboanion','Rate of reaction is inversely proportional to steric hindrance','Rate of reaction is directly proportional to steric hindrance'],     answer:2 },{     question:'Which of the following form of carbon is optically active ?',     options:['Chiral carbon','Achiral carbon','Halo carbon','All of the above'],     answer:0 },{     question:'Which type of nucleophilic attack takes place in SN1 reaction ?',     options:['Front attack','Back attack','Both Front and Back attack','None'],     answer:2 },{     question:'Which type of Nucleus attack takes place in SN2 reaction ?',     options:['Front attack','Back attack','Both front and back attacn','None'],     answer:1 },{     question:'The correct order for Rate of Reaction with respect to halogen for both SN1 and SN1 reaction is ?',     options:['RF > RCl > RBr > RI','RI > RBr > RCl > RF','RBr > RCl > RI > RF','RF > RCl > Rl > RBr'],     answer:1 },{     question:'Correct Rate Law equation for SN2 reaction is ?',     options:['Rate = k[R-X]','Rate = k[R-X][Nu<sup>-</sup>]','Rate = k[R-X][Nu<sup>+</sup>]','Rate = k[R-X][Eu<sup>-</sup>]'],     answer:1 },
-] </script> <script type="text/javascript">
-
-var timeLimit =time;
-
- document.getElementById('timelimit').innerHTML ="";
-
-const section = document.getElementById('qna');
-
-const fragment = document.createDocumentFragment();
-
-myApp.forEach(question => {
-
-  const paragraph = document.createElement('li');
-
   
-
-  paragraph.innerHTML = `${question.question} - <span style='color: green;'>${question.options[question.answer]}</span>`;
-
-  
-
-  fragment.appendChild(paragraph);
-
-});
-
-section.appendChild(fragment);
-
-function load(){
-
-    number++;
-
-   questionText.innerHTML=myApp[questionIndex].question;
-
-    creatOptions();
-
-    scoreBoard();
-
-    currentQuestionNum.innerHTML=number + " / " +myApp.length;
-
-}
-
-function creatOptions(){
-
-    optionBox.innerHTML="";
-
-    let animationDelay=0.2;
-
-    for(let i=0; i<myApp[questionIndex].options.length; i++){
-
-        const option=document.createElement("div");
-
-              option.innerHTML=myApp[questionIndex].options[i];
-
-              option.classList.add("option");
-
-              option.id=i;
-
-              option.style.animationDelay=animationDelay + "s";
-
-              animationDelay=animationDelay+0.2;
-
-              option.setAttribute("onclick","check(this)");
-
-              optionBox.appendChild(option);
-
-        
-
-    }
-
-}
-
-function generateRandomQuestion(){
-
-    const randomNumber=Math.floor(Math.random() * myApp.length);
-
-   let hitDuplicate=0;
-
-   if(myArray.length == 0){
-
-        questionIndex=randomNumber;
-
-    }
-
-    else{
-
-        for(let i=0; i<myArray.length; i++){
-
-            if(randomNumber == myArray[i]){
-
-                //if duplicate found
-
-                hitDuplicate=1;
-
-                
-
-            }
-
-        }
-
-        if(hitDuplicate == 1){
-
-            generateRandomQuestion();
-
-            return;
-
-        }
-
-        else{
-
-            questionIndex=randomNumber;
-
-        }
-
-    }
-
+  <tbody>
+    <tr>
+      <td style="width:10px">1.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>4.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>5.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>6.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>7.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>8.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>9.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>10.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>11.</td>
+      <td>Cell</td>
+    </tr>    <tr>
+      <td>12.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>13.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>14.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>15.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>16.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>17.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>18.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>19.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>20.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>21.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>22.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>23.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>24.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>25.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>26.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>27.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>28.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>29.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>30.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>31.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>32.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>33.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>34.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>35.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>36.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>37.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>38.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>39.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>40.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>41.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>42.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>43.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>44.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>45.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>46.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>47.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>48.</td>
+      <td>Cell</td>
+    </tr>
+        <tr>
+      <td>49.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>50.</td>
+      <td>Cell</td>
+    </tr>
+    <tr>
+      <td>51.</td>
+      <td>Cell</td>
+    </tr>
     
-
-    myArray.push(randomNumber);
-
-    console.log(myArray)
-
-    load();
-
-}
-
-function check(ele){
-
-    const id=ele.id;
-
-    if(id==myApp[questionIndex].answer){
-
-       ele.classList.add("correct");
-
-        score++;
-
-        scoreBoard();
-
-    }
-
-    else{
-
-        ele.classList.add("wrong");
-
-        //show correct option when clicked answer is wrong
-
-        for(let i=0; i<optionBox.children.length; i++){
-
-            if(optionBox.children[i].id==myApp[questionIndex].answer){
-
-                optionBox.children[i].classList.add("show-correct");
-
-            }
-
-        }
-
-    }
-
-    attempt++;
-
-    disableOptions()
-
-    showAnswerDescription();
-
-    showNextQuestionBtn();
-
-    stopTimer();
-
     
-
-    if(number == myApp.length){
-
-        quizOver();
-
-    }
-
-}
-
-function timeIsUp(){
-
-    showTimeUpText();
-
-    //when time is up Show Correct Answer
-
-    for(let i=0; i<optionBox.children.length; i++){
-
-            if(optionBox.children[i].id==myApp[questionIndex].answer){
-
-                optionBox.children[i].classList.add("show-correct");
-
-				
-
-            }
-
-        }
-
-    disableOptions()
-
-    showAnswerDescription();
-
-    showNextQuestionBtn();
-
-	if(number == myApp.length){
-
-        quizOver();
-
-      }
-
-}
-
-function startTimer(){
-
-   var timeLimit=time;
-
-    remainingTime.innerHTML=timeLimit;
-
-    remainingTime.classList.remove("less-time");
-
-    interval=setInterval(()=>{
-
-      timeLimit--;
-
-        if(timeLimit < 10){
-
-            timeLimit="0"+timeLimit;
-
-            
-
-            }
-
-            if(timeLimit < 6){
-
-                remainingTime.classList.add("less-time");  
-
-            }
-
-            remainingTime.innerHTML=timeLimit;
-
-            if(timeLimit == 0){
-
-            clearInterval(interval);
-
-            timeIsUp();
-
-    }
-
-    },1000)
-
-}
-
-function stopTimer(){
-
-    clearInterval(interval);
-
-}
-
-function disableOptions(){
-
-    for(let i=0; i<optionBox.children.length; i++){
-
-        optionBox.children[i].classList.add("already-answered")
-
-    }
-
-}
-
-function showAnswerDescription(){
-
-    if(typeof myApp[questionIndex].description !== 'undefined'){
-
-        answerDescription.classList.add("show");
-
-        answerDescription.innerHTML=myApp[questionIndex].description;
-
-    }
-
     
-
-}
-
-function hideAnswerDescription(){
-
-    answerDescription.classList.remove("show");
-
-    answerDescription.innerHTML="";
-
-}
-
-function showNextQuestionBtn(){
-
-    nextQuestionBtn.classList.add("show");
-
-}
-
-function hideNextQuestionBtn(){
-
-    nextQuestionBtn.classList.remove("show");
-
-}
-
-function showTimeUpText(){
-
-    timeUpText.classList.add("show");
-
-}
-
-function hideTimeUpText(){
-
-    timeUpText.classList.remove("show");
-
     
+    
+  </tbody>
+</table>
 
-}
-
-function scoreBoard(){
-
-    correctAnswers.innerHTML=score;
-
-}
-
-nextQuestionBtn.addEventListener("click",nextQuestion);
-
-function nextQuestion(){
-
-   generateRandomQuestion();
-
-    hideNextQuestionBtn();
-
-    hideAnswerDescription();
-
-    hideTimeUpText();
-
-    startTimer();
-
-}
-
-function quizResult(){
-
-    document.querySelector(".total-questions").innerHTML=myApp.length;
-
-    document.querySelector(".total-attempt").innerHTML=attempt;
-
-    document.querySelector(".total-correct").innerHTML=score;
-
-    document.querySelector(".total-wrong").innerHTML=attempt-score;
-
-    const percentage=(score/myApp.length)*100;
-
-    document.querySelector(".percentage").innerHTML=percentage.toFixed(2) +"%";
-
-}
-
-function resetQuiz(){
-
-  attempt=0;
-
-  //questionIndex=0;
-
-  score=0;
-
-  number=0;
-
-  myArray=[];
-
-}
-
-function quizOver(){
-
-    nextQuestionBtn.classList.remove("show");
-
-    seeResultBtn.classList.add("show");
-
-}
-
-seeResultBtn.addEventListener("click", ()=>{
-
-    quizBox.classList.remove("show");
-
-    seeResultBtn.classList.remove("show");
-
-    quizOverBox.classList.add("show");
-
-    quizResult();
-
-     })
-
-startAgainQuizBtn.addEventListener("click", ()=>{
-
-    quizBox.classList.add("show");
-
-    quizOverBox.classList.remove("show");
-
-    resetQuiz(); 
-
-    nextQuestion();
-
-    })
-
-goHomeBtn.addEventListener("click", ()=>{
-
-    quizOverBox.classList.remove("show");
-
-    quizHomeBox.classList.add("show")
-
-    resetQuiz();
-
-})
-
-  
-
-startQuizBtn.addEventListener("click", ()=>{
-
-    quizHomeBox.classList.remove("show");
-
-    quizBox.classList.add("show");
-
-    nextQuestion();
-
-})
-
-</script>
-
-</body>
-
-</html>
